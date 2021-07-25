@@ -10,9 +10,6 @@ import java.util.Map;
 
 public class Utils {
 
-
-
-
     public static ResponseEntity<String> responseentity(String data){
         return new ResponseEntity<String>(data, getHttpheader(), HttpStatus.OK);
     }
