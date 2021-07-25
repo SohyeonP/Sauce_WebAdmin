@@ -24,7 +24,8 @@ public class DBConnectionConfigMybatis {
 	@Bean(name = "myDataSource")
 	@ConfigurationProperties(prefix = "spring.my.datasource")
 	public DataSource myDataSource(){
-		return DataSourceBuilder.create().build();
+		System.out.println("Mybatis 시작지점");
+        return DataSourceBuilder.create().build();
 	}
 
     @Primary
