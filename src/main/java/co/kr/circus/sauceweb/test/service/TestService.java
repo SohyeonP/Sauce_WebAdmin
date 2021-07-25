@@ -4,5 +4,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface TestService {
-    List<Map<String, Object>> getAll()throws Exception;
+    public List<Map<String, Object>> getAll()throws Exception;
 }
