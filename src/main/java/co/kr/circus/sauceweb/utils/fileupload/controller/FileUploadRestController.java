@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequestMapping("/rest/files")
 @RestController
 public class FileUploadRestController {
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
@@ -26,12 +27,7 @@ public class FileUploadRestController {
     @Autowired
     private FileUploadDownloadService service;
 
-    @GetMapping
-    public String controllerMain() {
-        return "Hello! File Upload Test";
-    }
-
-    @PostMapping("/uploadFile")
+    @PostMapping("/file")
     public FileUploadResponse uploadFile(@RequestParam("file") MultipartFile file) {
         String fileName = service.storeFile(file);
 
@@ -43,7 +39,7 @@ public class FileUploadRestController {
         return new FileUploadResponse(fileName, fileDownloadUri, file.getContentType(), file.getSize());
     }
 
-    @PostMapping("/uploadMultipleFiles")
+    @PostMapping
     public List<FileUploadResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files){
         return Arrays.asList(files)
                 .stream()
@@ -51,7 +47,7 @@ public class FileUploadRestController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/downloadFile/{fileName:.+}")
+    @GetMapping("/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request){
         // Load file as Resource
         Resource resource = service.loadFileAsResource(fileName);
