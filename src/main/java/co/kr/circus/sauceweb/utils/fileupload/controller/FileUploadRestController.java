@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/rest/files")
 @RestController
 public class FileUploadRestController {
+
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
     @Autowired

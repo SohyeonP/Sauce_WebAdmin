@@ -4,6 +4,7 @@ import co.kr.circus.sauceweb.signup.dto.Member;
 import co.kr.circus.sauceweb.signup.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 @Service
 public class MemberService {
 
+    @Resource(name ="memepository")
     private final MemberRepository memberRepository;
 
     public MemberService(MemberRepository memberRepository) {

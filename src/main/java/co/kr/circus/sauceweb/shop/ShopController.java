@@ -15,12 +15,12 @@ public class ShopController {
         this.shopService = shopService;
     }
 
-    @GetMapping("/store-register")
+    @GetMapping("/store/register")
     public String createForm() {
         return "createShopForm";
     }
 
-    @PostMapping("/store-register")
+    @PostMapping("/store/register")
     public String create(ShopForm form) {
         Shop shop = new Shop();
         shop.setBiz_storename(form.getBiz_storename());

@@ -25,6 +25,7 @@ public class MemberController {
 
     @PostMapping("/signup")
     public String create(MemberForm form) {
+        System.out.println("==================MemberSingup=============================");
         Member member = new Member();
         member.setName(form.getName());
         member.setPhoneNumber(form.getPhoneNumber());
