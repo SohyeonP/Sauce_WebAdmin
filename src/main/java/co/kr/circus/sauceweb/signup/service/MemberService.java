@@ -2,6 +2,7 @@ package co.kr.circus.sauceweb.signup.service;
 
 import co.kr.circus.sauceweb.signup.dto.Member;
 import co.kr.circus.sauceweb.signup.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
