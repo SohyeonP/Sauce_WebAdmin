@@ -1,78 +1,24 @@
 package co.kr.circus.sauceweb.signup.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import java.util.Date;
 
+//필드에 대한 기본 getter, setter 생성, AccessLevel 미명시 시 접근 제한자는 public
+@Getter
+@Setter
+@AllArgsConstructor // 모든 필드에 대한 생성자 자동 생성
+@NoArgsConstructor // 파라미터 없는 생성자 생성
 public class Member {
     private Long boss_id;
     private String name;
-    private int phoneNumber;
-    private int birth;
+    private int phone;
+    private int birthday;
     private String email;
-    private String userName;
+    private String username;
     private String password;
     private Date createdAt;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public Long getBoss_id() {
-        return boss_id;
-    }
-
-    public void setBoss_id(Long boss_id) {
-        this.boss_id = boss_id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getBirth() {
-        return birth;
-    }
-
-    public void setBirth(int birth) {
-        this.birth = birth;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+    private Date updateAt;
 }

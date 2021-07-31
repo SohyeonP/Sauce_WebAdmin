@@ -1,10 +1,13 @@
 package co.kr.circus.sauceweb.signup.repository;
 
 import co.kr.circus.sauceweb.signup.dto.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository("memepository")
 public class MemoryMemberRepository implements MemberRepository {
+
     private static Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
 
@@ -23,9 +26,9 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findByUserName(String userName) {
+    public Optional<Member> findByUsername(String username) {
         return store.values().stream()
-                .filter(member -> member.getUserName().equals(userName))
+                .filter(member -> member.getUsername().equals(username))
                 .findAny();
     }
 
