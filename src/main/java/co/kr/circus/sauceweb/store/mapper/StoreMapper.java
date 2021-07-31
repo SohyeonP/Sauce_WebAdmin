@@ -8,17 +8,17 @@ import java.util.List;
 @Mapper
 public interface StoreMapper {
 
-    @Insert("INSERT INTO store(store_biz_storename, store_phone, store_biz_bossname, store_biz_address, store_biz_number) VALUES(#{store.biz_storename}, #{store.phone}, #{store.biz_bossname}, #{store.biz_address}, #{store.biz_number})")
+    @Insert("INSERT INTO store(biz_storename, phone, biz_bossname, biz_address, biz_number) VALUES(#{store.storename}, #{store.storephone}, #{store.bossname}, #{store.address}, #{store.number})")
     @Options(useGeneratedKeys = true, keyProperty = "store_id")
     int insert(@Param("store") Store store);
 
     @Select("SELECT * FROM store")
     @Results(id="StoreMap", value={
-            @Result(property= "biz_storename", column = "store_biz_storename"),
-            @Result(property= "phone", column = "store_phone"),
-            @Result(property= "biz_bossname", column = "store_biz_bossname"),
-            @Result(property= "biz_address", column = "store_biz_address"),
-            @Result(property= "biz_number", column = "store_biz_number")
+            @Result(property= "storename", column = "biz_storename"),
+            @Result(property= "storephone", column = "phone"),
+            @Result(property= "bossname", column = "biz_bossname"),
+            @Result(property= "address", column = "biz_address"),
+            @Result(property= "number", column = "biz_number")
     })
     List<Store> getAll();
 
