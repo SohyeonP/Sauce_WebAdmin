@@ -16,11 +16,11 @@ public class SauceProjectApplication {
         SpringApplication.run(SauceProjectApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     CommandLineRunner init(FileSystemStorageService storageService) {
         return (args) -> {
             storageService.deleteAll();
             storageService.init();
         };
-    }
+    }*/
 }
