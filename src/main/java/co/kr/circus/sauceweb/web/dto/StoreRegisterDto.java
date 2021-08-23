@@ -1,7 +1,6 @@
 package co.kr.circus.sauceweb.web.dto;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
