@@ -14,6 +14,11 @@ public class BossController {
 
     private final BossService bossService;
 
+    @GetMapping("/")
+    public String main() {
+        return "main";
+    }
+
     @GetMapping("/login")
     public String loginForm() {
         return "loginForm";
