@@ -21,7 +21,7 @@ public class BossController {
 
     @GetMapping("/login")
     public String loginForm() {
-        return "loginForm";
+        return "login";
     }
 
     @GetMapping("/signup")
