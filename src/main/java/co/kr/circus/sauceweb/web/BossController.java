@@ -26,13 +26,12 @@ public class BossController {
 
     @GetMapping("/signup")
     public String signupForm(@ModelAttribute MemberFormDto memberFormDto) {
-//        model.addAttribute("memberFormDto", new MemberFormDto());
-        return "createMemberForm";
+        return "signup";
     }
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute MemberFormDto memberFormDto) {
         bossService.signup(memberFormDto);
-        return "redirect:/signup";
+        return "redirect:/addStore";
     }
 }

@@ -19,7 +19,7 @@
 			<div class="signupFrm_div">
 				<h3>회원가입</h3>
 				<div class="signup_msg">회원가입을 위해 아래의 정보들을 입력해주세요<br> 이미 회원가입을 완료하셨다면 <span>로그인</span>을 해주세요</div>
-				<form class="signupfrm" action="#" method="POST">
+				<form class="signupfrm" th:action="@{/signup}" th:object="${memberFormDto}" method="POST">
 					<div>
 						<div class="t name"> 이름<span>*</span>
 						</div>
