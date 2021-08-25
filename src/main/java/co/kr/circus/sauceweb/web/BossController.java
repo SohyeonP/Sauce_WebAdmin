@@ -14,20 +14,24 @@ public class BossController {
 
     private final BossService bossService;
 
+    @GetMapping("/")
+    public String main() {
+        return "main";
+    }
+
     @GetMapping("/login")
     public String loginForm() {
-        return "loginForm";
+        return "login";
     }
 
     @GetMapping("/signup")
     public String signupForm(@ModelAttribute MemberFormDto memberFormDto) {
-//        model.addAttribute("memberFormDto", new MemberFormDto());
-        return "createMemberForm";
+        return "signup";
     }
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute MemberFormDto memberFormDto) {
         bossService.signup(memberFormDto);
-        return "redirect:/signup";
+        return "redirect:/addStore";
     }
 }
