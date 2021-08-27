@@ -51,4 +51,8 @@ public class BossService implements UserDetailsService {
         // 아이디, 비밀번호, 권한리스트를 매개변수로 User를 만들어 반환해준다.
         return new User(boss.getUsername(), boss.getPassword(), authorities);
     }
+
+    public Boss findByUsername(String username) {
+        return bossRepository.findByUsername(username).get();
+    }
 }

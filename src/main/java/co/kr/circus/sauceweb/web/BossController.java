@@ -32,6 +32,6 @@ public class BossController {
     @PostMapping("/signup")
     public String signup(@ModelAttribute MemberFormDto memberFormDto) {
         bossService.signup(memberFormDto);
-        return "redirect:/addStore";
+        return "redirect:/login";
     }
 }
