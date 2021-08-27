@@ -4,7 +4,6 @@ import co.kr.circus.sauceweb.service.BossService;
 import co.kr.circus.sauceweb.web.dto.BossSignupDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +25,7 @@ public class BossController {
     }
 
     @GetMapping("/signup")
-    public String signupForm(Model model) {
-        model.addAttribute("bossSingupDto", new BossSignupDto());
+    public String signupForm(@ModelAttribute BossSignupDto bossSignupDto) {
         return "signup";
     }
 
