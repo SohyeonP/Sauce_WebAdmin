@@ -21,17 +21,17 @@ public class StoreRegisterDto {
     private String holiday;
     private String temholiday;
 
-    public StoreRegisterDto(Store store) {
-        this.id = store.getId();
-        this.storeName = store.getStoreName();
-        this.storePhone = store.getStorePhone();
-        this.bossName = store.getBossName();
-        this.address = store.getAddress();
-        this.number = store.getNumber();
-        this.intro = store.getIntro();
-        this.opening = store.getOpening();
-        this.breaktime = store.getBreaktime();
-        this.holiday = store.getHoliday();
-        this.temholiday = store.getTemholiday();
+    public StoreRegisterDto(Store entity) {
+        this.id = entity.getId();
+        this.storeName = entity.getStoreName();
+        this.storePhone = entity.getStorePhone();
+        this.bossName = entity.getBossName();
+        this.address = entity.getAddress();
+        this.number = entity.getNumber();
+        this.intro = entity.getIntro();
+        this.opening = entity.getOpening();
+        this.breaktime = entity.getBreaktime();
+        this.holiday = entity.getHoliday();
+        this.temholiday = entity.getTemholiday();
     }
 }

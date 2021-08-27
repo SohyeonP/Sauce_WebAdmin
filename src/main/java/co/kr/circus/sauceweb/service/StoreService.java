@@ -35,8 +35,11 @@ public class StoreService {
         store.update(storeRegisterDTO);
     }
 
-    public Store findById(Long id) {
-        return storeRepository.findById(id).get();
+    public StoreRegisterDto findById(Long id) {
+        Store entity = storeRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 가게가 존재하지 않습니다.")
+        );
+        return new StoreRegisterDto(entity);
     }
 
     public Store findByBoss(Boss boss) {
