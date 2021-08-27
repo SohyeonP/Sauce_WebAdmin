@@ -2,7 +2,7 @@ package co.kr.circus.sauceweb.service;
 
 import co.kr.circus.sauceweb.domain.boss.Boss;
 import co.kr.circus.sauceweb.domain.boss.BossRepository;
-import co.kr.circus.sauceweb.web.dto.MemberFormDto;
+import co.kr.circus.sauceweb.web.dto.BossSignupDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -23,15 +23,10 @@ public class BossService implements UserDetailsService {
     private final BossRepository bossRepository;
 
     @Transactional
-    public void signup(MemberFormDto memberFormDto) {
+    public Long signup(BossSignupDto bossSignupDto) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        bossRepository.save(Boss.builder()
-                .name(memberFormDto.getName())
-                .phone(memberFormDto.getPhone())
-                .birth(memberFormDto.getBirth())
-                .email(memberFormDto.getEmail())
-                .username(memberFormDto.getUsername())
-                .password(passwordEncoder.encode(memberFormDto.getPassword())).build());
+        String encodedPassword = passwordEncoder.encode(bossSignupDto.getPassword());
+        return bossRepository.save(bossSignupDto.toEntity(encodedPassword)).getId();
     }
 
     @Override
