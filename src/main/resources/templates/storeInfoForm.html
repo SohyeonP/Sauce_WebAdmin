@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="container">
-    <form  th:object="${storeRegisterDto}" method="post">
+    <form th:action th:object="${storeRegisterDto}" method="post">
         <h1>업체 정보 수정</h1>
         <div class="form-group">
             <input type="hidden" th:field="*{id}" />
@@ -27,7 +27,7 @@
             <label for="temholiday">임시 휴무일</label><br>
             <input type="text" id="temholiday" name="temholiday" th:field="*{temholiday}"><br>
         </div>
-        <input type="submit">등록하기</input>
+        <input type="submit">
     </form>
 </div>
 </body>
