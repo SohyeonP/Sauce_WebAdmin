@@ -1,7 +1,6 @@
 package co.kr.circus.sauceweb.web;
 
 import co.kr.circus.sauceweb.domain.boss.Boss;
-import co.kr.circus.sauceweb.domain.store.Store;
 import co.kr.circus.sauceweb.service.BossService;
 import co.kr.circus.sauceweb.service.StoreService;
 import co.kr.circus.sauceweb.web.dto.StoreRegisterDto;
@@ -25,7 +24,7 @@ public class StoreController {
     private final BossService bossService;
 
     @GetMapping("/addStore")
-    public String getStoreForm(@AuthenticationPrincipal User user, Model model) {
+    public String addStoreForm(@AuthenticationPrincipal User user, Model model) {
         Boss findBoss = bossService.findByUsername(user.getUsername());
 
         try {
@@ -46,9 +45,8 @@ public class StoreController {
     }
 
     @GetMapping("/storeInfo/{id}")
-    public String getStore(@PathVariable Long id, Model model) {
+    public String readStore(@PathVariable Long id, Model model) {
         model.addAttribute("storeRegisterDto", storeService.findById(id));
-
         return "storeInfoForm";
     }
 
