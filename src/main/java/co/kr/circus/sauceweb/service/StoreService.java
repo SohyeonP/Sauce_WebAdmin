@@ -1,13 +1,12 @@
 package co.kr.circus.sauceweb.service;
 
+import co.kr.circus.sauceweb.domain.boss.Boss;
 import co.kr.circus.sauceweb.domain.store.Store;
 import co.kr.circus.sauceweb.domain.store.StoreRepository;
 import co.kr.circus.sauceweb.web.dto.StoreRegisterDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,14 +15,16 @@ public class StoreService {
     private final StoreRepository storeRepository;
 
     @Transactional
-    public void save(StoreRegisterDto storeRegisterDto) {
-        storeRepository.save(Store.builder()
+    public Long save(Boss boss, StoreRegisterDto storeRegisterDto) {
+        Store store = storeRepository.save(Store.builder()
+                .boss(boss)
                 .storeName(storeRegisterDto.getStoreName())
                 .storePhone(storeRegisterDto.getStorePhone())
                 .bossName(storeRegisterDto.getBossName())
                 .address(storeRegisterDto.getAddress())
                 .number(storeRegisterDto.getNumber())
                 .build());
+        return store.getId();
     }
 
     @Transactional
@@ -34,7 +35,15 @@ public class StoreService {
         store.update(storeRegisterDTO);
     }
 
-    public Store findById(Long id) {
-        return storeRepository.findById(id).get();
+    public StoreRegisterDto findById(Long id) {
+        Store entity = storeRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 가게가 존재하지 않습니다.")
+        );
+        return new StoreRegisterDto(entity);
+    }
+
+    public Store findByBoss(Boss boss) {
+        return storeRepository.findByBoss(boss).orElseThrow(
+                () -> new IllegalArgumentException("등록된 가게가 없습니다."));
     }
 }
