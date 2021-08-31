@@ -2,9 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="container">
-    <form th:action="@{/addStore}" th:object="${storeRegisterDto}" method="post">
+    <form th:action="@{/addStore}" th:object="${storeRegisterDto}" method="post" enctype="multipart/form-data">
         <h1>업체등록</h1>
         <div class="form-group">
+            로고<input type="file" name="attchFile"><hr>
             <label for="biz_storename">가게 이름(상호명)</label><br>
             <input type="text" id="biz_storename" name="storeName">
             <p>앱에서 고객에게 보여질 가게 이름을 입력해주세요.</p>

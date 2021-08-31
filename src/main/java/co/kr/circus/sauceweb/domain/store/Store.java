@@ -23,6 +23,9 @@ public class Store extends BaseTimeEntity {
     @JoinColumn(name = "boss_id")
     private Boss boss;
 
+    @Embedded
+    private UploadFile logo;
+
     private String storeName;
     private String storePhone;
     private String bossName;
@@ -35,8 +38,9 @@ public class Store extends BaseTimeEntity {
     private String temholiday;
 
     @Builder
-    public Store(Boss boss, String storeName, String storePhone, String bossName, String address, String number, String intro, String opening, String breaktime, String holiday, String temholiday, String storeLatitude, String storeLongitude) {
+    public Store(Boss boss, UploadFile logo, String storeName, String storePhone, String bossName, String address, String number, String intro, String opening, String breaktime, String holiday, String temholiday, String storeLatitude, String storeLongitude) {
         this.setBoss(boss);
+        this.logo = logo;
         this.storeName = storeName;
         this.storePhone = storePhone;
         this.bossName = bossName;
@@ -49,7 +53,8 @@ public class Store extends BaseTimeEntity {
         this.temholiday = temholiday;
     }
 
-    public void update(StoreRegisterDto storeRegisterDTO) {
+    public void update(StoreRegisterDto storeRegisterDTO, UploadFile attachFile) {
+        this.logo = attachFile;
         this.storeName = storeRegisterDTO.getStoreName();
         this.storePhone = storeRegisterDTO.getStorePhone();
         this.bossName = storeRegisterDTO.getBossName();
