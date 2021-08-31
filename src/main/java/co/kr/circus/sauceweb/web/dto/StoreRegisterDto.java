@@ -1,6 +1,7 @@
 package co.kr.circus.sauceweb.web.dto;
 
 import co.kr.circus.sauceweb.domain.store.Store;
+import co.kr.circus.sauceweb.domain.store.UploadFile;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class StoreRegisterDto {
     private Long id;
     private MultipartFile attchFile;
+    private UploadFile logo;
     private String storeName;
     private String storePhone;
     private String bossName;
@@ -25,6 +27,7 @@ public class StoreRegisterDto {
 
     public StoreRegisterDto(Store entity) {
         this.id = entity.getId();
+        this.logo = entity.getLogo();
         this.storeName = entity.getStoreName();
         this.storePhone = entity.getStorePhone();
         this.bossName = entity.getBossName();

@@ -20,9 +20,11 @@ public class StoreService {
     private final FileStore fileStore;
 
     @Transactional
-    public Long save(Boss boss, StoreRegisterDto storeRegisterDto) {
+    public Long save(Boss boss, StoreRegisterDto storeRegisterDto) throws IOException {
+        UploadFile attachFile = fileStore.storeFile(storeRegisterDto.getAttchFile());
         Store store = storeRepository.save(Store.builder()
                 .boss(boss)
+                .logo(attachFile)
                 .storeName(storeRegisterDto.getStoreName())
                 .storePhone(storeRegisterDto.getStorePhone())
                 .bossName(storeRegisterDto.getBossName())
@@ -33,12 +35,12 @@ public class StoreService {
     }
 
     @Transactional
-    public void update(Long id, StoreRegisterDto storeRegisterDTO) throws IOException {
-        UploadFile attachFile = fileStore.storeFile(storeRegisterDTO.getAttchFile());
+    public void update(Long id, StoreRegisterDto storeRegisterDto) throws IOException {
+        UploadFile attachFile = fileStore.storeFile(storeRegisterDto.getAttchFile());
         Store store = storeRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다.")
         );
-        store.update(storeRegisterDTO, attachFile);
+        store.update(storeRegisterDto, attachFile);
     }
 
     public StoreRegisterDto findById(Long id) {
