@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
+
 @Slf4j
 @RequiredArgsConstructor
 @Controller
@@ -51,7 +53,7 @@ public class StoreController {
     }
 
     @PostMapping("/storeInfo/{id}")
-    public String updateStore(@PathVariable Long id, @ModelAttribute StoreRegisterDto storeRegisterDto) {
+    public String updateStore(@PathVariable Long id, @ModelAttribute StoreRegisterDto storeRegisterDto) throws IOException {
         storeService.update(id, storeRegisterDto);
 
         return "redirect:/storeInfo/" + id;

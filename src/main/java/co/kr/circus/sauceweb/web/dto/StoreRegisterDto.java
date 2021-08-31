@@ -4,12 +4,14 @@ import co.kr.circus.sauceweb.domain.store.Store;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class StoreRegisterDto {
     private Long id;
+    private MultipartFile attchFile;
     private String storeName;
     private String storePhone;
     private String bossName;
