@@ -28,9 +28,11 @@ public class Boss extends BaseTimeEntity {
     private String email;
     private String username;
     private String password;
+    private String check1;
+    private String check2;
 
     @Builder
-    public Boss(List<Store> stores, String name, String phone, String birth, String email, String username, String password) {
+    public Boss(List<Store> stores, String name, String phone, String birth, String email, String username, String password, String check1, String check2) {
         this.stores = stores;
         this.name = name;
         this.phone = phone;
@@ -38,5 +40,7 @@ public class Boss extends BaseTimeEntity {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.check1 = check1;
+        this.check2 = check2;
     }
 }
