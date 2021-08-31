@@ -50,4 +50,12 @@ public class BossService implements UserDetailsService {
     public Boss findByUsername(String username) {
         return bossRepository.findByUsername(username).get();
     }
+
+    public String checkUsername(String username) {
+        Optional<Boss> findBoss = bossRepository.findByUsername(username);
+        if (findBoss.isPresent()) {
+            return "fail";
+        }
+        return "success";
+    }
 }
