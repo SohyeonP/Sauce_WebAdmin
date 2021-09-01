@@ -10,10 +10,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -26,7 +25,6 @@ public class StoreController {
     @GetMapping("/addStore")
     public String addStoreForm(@AuthenticationPrincipal User user, Model model) {
         Boss findBoss = bossService.findByUsername(user.getUsername());
-
         try {
             Long storeId = storeService.findByBoss(findBoss).getId();
             return "redirect:/storeInfo/" + storeId;
@@ -37,10 +35,9 @@ public class StoreController {
     }
 
     @PostMapping("/addStore")
-    public String addStore(@AuthenticationPrincipal User user, @ModelAttribute StoreRegisterDto storeRegisterDto) {
+    public String addStore(@AuthenticationPrincipal User user, @ModelAttribute StoreRegisterDto storeRegisterDto) throws IOException {
         Boss findBoss = bossService.findByUsername(user.getUsername());
         Long storeId = storeService.save(findBoss, storeRegisterDto);
-
         return "redirect:/storeInfo/" + storeId;
     }
 
@@ -51,9 +48,8 @@ public class StoreController {
     }
 
     @PostMapping("/storeInfo/{id}")
-    public String updateStore(@PathVariable Long id, @ModelAttribute StoreRegisterDto storeRegisterDto) {
+    public String updateStore(@PathVariable Long id, @ModelAttribute StoreRegisterDto storeRegisterDto) throws IOException {
         storeService.update(id, storeRegisterDto);
-
         return "redirect:/storeInfo/" + id;
     }
 }
