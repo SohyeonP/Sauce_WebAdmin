@@ -4,6 +4,7 @@ import co.kr.circus.sauceweb.domain.boss.Boss;
 import co.kr.circus.sauceweb.domain.boss.BossRepository;
 import co.kr.circus.sauceweb.web.dto.BossSaveRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -27,7 +29,8 @@ public class BossService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return bossRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        Boss entity = bossRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        return new User(entity.getUsername(), entity.getPassword(), new ArrayList<>());
     }
 
     public Boss findByUsername(String username) {
