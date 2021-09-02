@@ -1,7 +1,7 @@
 package co.kr.circus.sauceweb.web;
 
 import co.kr.circus.sauceweb.service.BossService;
-import co.kr.circus.sauceweb.web.dto.BossSignupDto;
+import co.kr.circus.sauceweb.web.dto.BossSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,20 +26,20 @@ public class BossController {
     }
 
     @GetMapping("/signup")
-    public String signupForm(@ModelAttribute BossSignupDto bossSignupDto) {
+    public String signupForm() {
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String signup(@ModelAttribute BossSignupDto bossSignupDto) {
-        bossService.signup(bossSignupDto);
+    public String signup(@ModelAttribute BossSaveRequestDto bossSaveRequestDto) {
+        bossService.signup(bossSaveRequestDto);
         return "redirect:/login";
     }
 
     @GetMapping("/idCheck")
     @ResponseBody
-    public String idCheck(@ModelAttribute BossSignupDto bossSignupDto) {
-        String result = bossService.checkUsername(bossSignupDto.getUsername());
+    public String idCheck(@ModelAttribute BossSaveRequestDto bossSaveRequestDto) {
+        String result = bossService.checkUsername(bossSaveRequestDto.getUsername());
         return result;
     }
 }

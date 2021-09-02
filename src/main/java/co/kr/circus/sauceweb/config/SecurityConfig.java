@@ -1,7 +1,7 @@
 package co.kr.circus.sauceweb.config;
 
 import co.kr.circus.sauceweb.service.BossService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,12 +13,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
-@AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private BossService bossService;
+    private final BossService bossService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
