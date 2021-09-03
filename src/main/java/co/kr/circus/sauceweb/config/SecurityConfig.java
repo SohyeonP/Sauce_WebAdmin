@@ -1,7 +1,7 @@
 package co.kr.circus.sauceweb.config;
 
 import co.kr.circus.sauceweb.service.BossService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,12 +13,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
-@AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private BossService bossService;
+    private final BossService bossService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()     // 로그인 설정
                 .loginPage("/login")      // 커스텀 login 페이지를 사용
-                .defaultSuccessUrl("/addStore")      // 로그인 성공 시 이동할 페이지
+                .defaultSuccessUrl("/stores/new")      // 로그인 성공 시 이동할 페이지
                 .permitAll()
                 .and()
                 .logout()
