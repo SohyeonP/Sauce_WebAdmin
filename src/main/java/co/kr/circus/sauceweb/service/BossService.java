@@ -2,6 +2,7 @@ package co.kr.circus.sauceweb.service;
 
 import co.kr.circus.sauceweb.domain.boss.Boss;
 import co.kr.circus.sauceweb.domain.boss.BossRepository;
+import co.kr.circus.sauceweb.web.dto.BossResponseDto;
 import co.kr.circus.sauceweb.web.dto.BossSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
@@ -21,7 +22,7 @@ public class BossService implements UserDetailsService {
     private final BossRepository bossRepository;
 
     @Transactional
-    public Long signup(BossSaveRequestDto bossSaveRequestDto) {
+    public Long save(BossSaveRequestDto bossSaveRequestDto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         bossSaveRequestDto.encodePassword(encoder.encode(bossSaveRequestDto.getPassword()));
         return bossRepository.save(bossSaveRequestDto.toEntity()).getId();
@@ -33,8 +34,9 @@ public class BossService implements UserDetailsService {
         return new User(entity.getUsername(), entity.getPassword(), new ArrayList<>());
     }
 
-    public Boss findByUsername(String username) {
-        return bossRepository.findByUsername(username).get();
+    public BossResponseDto findByUsername(String username) {
+        Boss boss = bossRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        return new BossResponseDto(boss);
     }
 
     public String checkUsername(String username) {

@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()     // 로그인 설정
                 .loginPage("/login")      // 커스텀 login 페이지를 사용
-                .defaultSuccessUrl("/addStore")      // 로그인 성공 시 이동할 페이지
+                .defaultSuccessUrl("/stores/new")      // 로그인 성공 시 이동할 페이지
                 .permitAll()
                 .and()
                 .logout()

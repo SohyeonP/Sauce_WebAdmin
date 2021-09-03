@@ -38,7 +38,7 @@ public class Store extends BaseTimeEntity {
     private String temholiday;
 
     @Builder
-    public Store(Boss boss, UploadFile logo, String storeName, String storePhone, String bossName, String address, String number, String intro, String opening, String breaktime, String holiday, String temholiday, String storeLatitude, String storeLongitude) {
+    public Store(Boss boss, UploadFile logo, String storeName, String storePhone, String bossName, String address, String number, String intro, String opening, String breaktime, String holiday, String temholiday) {
         this.setBoss(boss);
         this.logo = logo;
         this.storeName = storeName;
@@ -53,8 +53,7 @@ public class Store extends BaseTimeEntity {
         this.temholiday = temholiday;
     }
 
-    public void update(StoreRegisterDto storeRegisterDTO, UploadFile attachFile) {
-        this.logo = attachFile;
+    public void update(StoreRegisterDto storeRegisterDTO) {
         this.storeName = storeRegisterDTO.getStoreName();
         this.storePhone = storeRegisterDTO.getStorePhone();
         this.bossName = storeRegisterDTO.getBossName();

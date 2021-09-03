@@ -32,7 +32,7 @@ public class BossController {
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute BossSaveRequestDto bossSaveRequestDto) {
-        bossService.signup(bossSaveRequestDto);
+        bossService.save(bossSaveRequestDto);
         return "redirect:/login";
     }
 
