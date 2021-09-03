@@ -26,17 +26,9 @@ public class StoreController {
     private final BossService bossService;
 
     @GetMapping("/stores/new")
-    public String addStoreForm(@AuthenticationPrincipal User user,
-                               RedirectAttributes redirectAttributes) {
+    public String addStoreForm() {
         log.info("GET /stores/new");
-        try {
-            BossResponseDto findBoss = bossService.findByUsername(user.getUsername());
-            Long storeId = storeService.findByBoss(findBoss).getId();
-            redirectAttributes.addAttribute("id", storeId);
-            return "redirect:/stores/{id}";
-        } catch (Exception e) {
-            return "createShopForm";
-        }
+        return "createShopForm";
     }
 
     @PostMapping("/stores/new")
@@ -49,29 +41,11 @@ public class StoreController {
         return "redirect:/stores/{id}";
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "test";
-    }
-
     @GetMapping("/stores/{id}")
     public String readStore(@AuthenticationPrincipal User user, @PathVariable Long id, Model model) {
         log.info("GET /stores/{id}");
-        try {
-            BossResponseDto findBoss = bossService.findByUsername(user.getUsername());
-            List<Store> stores = findBoss.getStores();
-            for (Store store : stores) {
-                Long storeId = store.getId();
-                if (id == storeId) {
-                    model.addAttribute("storeRegisterDto", storeService.findById(id));
-                    return "storeInfoForm";
-                }
-            }
-            return "/logout";
-        } catch (Exception e) {
-            return "/logout";
-        }
-
+        model.addAttribute("storeRegisterDto", storeService.findById(id));
+        return "storeInfoForm";
     }
 
     @PostMapping("/stores/{id}")
@@ -80,8 +54,7 @@ public class StoreController {
                               @PathVariable Long id,
                               RedirectAttributes redirectAttributes) throws IOException {
         log.info("POST /stores/{id}");
-        String username = user.getUsername();
-        storeService.update(username, storeRegisterDto);
+        storeService.update(user.getUsername(), storeRegisterDto);
         redirectAttributes.addAttribute("id", id);
         return "redirect:/stores/{id}";
     }
