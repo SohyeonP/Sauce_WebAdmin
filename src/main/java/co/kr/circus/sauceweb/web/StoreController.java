@@ -1,8 +1,8 @@
 package co.kr.circus.sauceweb.web;
 
 import co.kr.circus.sauceweb.service.StoreService;
-import co.kr.circus.sauceweb.web.dto.StoreRegisterDto;
 import co.kr.circus.sauceweb.web.dto.StoreSaveRequestDto;
+import co.kr.circus.sauceweb.web.dto.StoreInfoUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,15 +22,15 @@ public class StoreController {
     private final StoreService storeService;
 
     @GetMapping("/stores/new")
-    public String addStoreForm() {
+    public String createStoreForm() {
         log.info("GET /stores/new");
         return "createShopForm";
     }
 
     @PostMapping("/stores/new")
-    public String addStore(@AuthenticationPrincipal User user,
-                           @ModelAttribute StoreSaveRequestDto storeSaveRequestDto,
-                           RedirectAttributes redirectAttributes) throws IOException {
+    public String createStore(@AuthenticationPrincipal User user,
+                              @ModelAttribute StoreSaveRequestDto storeSaveRequestDto,
+                              RedirectAttributes redirectAttributes) throws IOException {
         log.info("POST /stores/new");
         Long storeId = storeService.save(user.getUsername(), storeSaveRequestDto);
         redirectAttributes.addAttribute("id", storeId);
@@ -38,19 +38,18 @@ public class StoreController {
     }
 
     @GetMapping("/stores/{id}")
-    public String readStore(@AuthenticationPrincipal User user, @PathVariable Long id, Model model) {
+    public String searchStore(@PathVariable Long id, Model model) {
         log.info("GET /stores/{id}");
         model.addAttribute("storeRegisterDto", storeService.findById(id));
         return "storeInfoForm";
     }
 
     @PostMapping("/stores/{id}")
-    public String updateStore(@AuthenticationPrincipal User user,
-                              @ModelAttribute StoreRegisterDto storeRegisterDto,
-                              @PathVariable Long id,
-                              RedirectAttributes redirectAttributes) throws IOException {
+    public String updateStoreInfo(@PathVariable Long id,
+                                  @ModelAttribute StoreInfoUpdateRequestDto storeInfoUpdateRequestDto,
+                                  RedirectAttributes redirectAttributes) {
         log.info("POST /stores/{id}");
-        storeService.update(user.getUsername(), storeRegisterDto);
+        storeService.update(id, storeInfoUpdateRequestDto);
         redirectAttributes.addAttribute("id", id);
         return "redirect:/stores/{id}";
     }

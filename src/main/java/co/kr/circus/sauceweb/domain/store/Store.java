@@ -2,7 +2,7 @@ package co.kr.circus.sauceweb.domain.store;
 
 import co.kr.circus.sauceweb.domain.BaseTimeEntity;
 import co.kr.circus.sauceweb.domain.boss.Boss;
-import co.kr.circus.sauceweb.web.dto.StoreRegisterDto;
+import co.kr.circus.sauceweb.web.dto.StoreInfoUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,17 +53,17 @@ public class Store extends BaseTimeEntity {
         this.temholiday = temholiday;
     }
 
-    public void update(StoreRegisterDto storeRegisterDTO) {
-        this.storeName = storeRegisterDTO.getStoreName();
-        this.storePhone = storeRegisterDTO.getStorePhone();
-        this.bossName = storeRegisterDTO.getBossName();
-        this.address = storeRegisterDTO.getAddress();
-        this.number = storeRegisterDTO.getNumber();
-        this.intro = storeRegisterDTO.getIntro();
-        this.opening = storeRegisterDTO.getOpening();
-        this.breaktime = storeRegisterDTO.getBreaktime();
-        this.holiday = storeRegisterDTO.getHoliday();
-        this.temholiday = storeRegisterDTO.getTemholiday();
+    public void update(StoreInfoUpdateRequestDto storeInfoUpdateRequestDto) {
+        this.storeName = storeInfoUpdateRequestDto.getStoreName();
+        this.storePhone = storeInfoUpdateRequestDto.getStorePhone();
+        this.bossName = storeInfoUpdateRequestDto.getBossName();
+        this.address = storeInfoUpdateRequestDto.getAddress();
+        this.number = storeInfoUpdateRequestDto.getNumber();
+        this.intro = storeInfoUpdateRequestDto.getIntro();
+        this.opening = storeInfoUpdateRequestDto.getOpening();
+        this.breaktime = storeInfoUpdateRequestDto.getBreaktime();
+        this.holiday = storeInfoUpdateRequestDto.getHoliday();
+        this.temholiday = storeInfoUpdateRequestDto.getTemholiday();
     }
 
     //==연관관계 편의 메서드==//
