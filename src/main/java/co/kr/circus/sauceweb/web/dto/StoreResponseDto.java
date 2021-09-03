@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public class StoreResponseDto {
 
+    private Long id;
     private UploadFile logo;
     private String storeName;
     private String storePhone;
@@ -20,6 +21,7 @@ public class StoreResponseDto {
     private String temholiday;
 
     public StoreResponseDto(Store entity) {
+        this.id = entity.getId();
         this.logo = entity.getLogo();
         this.storeName = entity.getStoreName();
         this.storePhone = entity.getStorePhone();

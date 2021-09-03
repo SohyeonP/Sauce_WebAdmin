@@ -31,11 +31,11 @@ public class StoreService {
     }
 
     @Transactional
-    public void update(Long id, StoreInfoUpdateRequestDto storeInfoUpdateRequestDto) {
+    public void updateInfo(Long id, StoreInfoUpdateRequestDto storeInfoUpdateRequestDto) {
         Store store = storeRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다.")
         );
-        store.update(storeInfoUpdateRequestDto);
+        store.updateInfo(storeInfoUpdateRequestDto);
     }
 
     public StoreResponseDto findById(Long id) {
@@ -43,5 +43,18 @@ public class StoreService {
                 () -> new IllegalArgumentException("해당 가게가 존재하지 않습니다.")
         );
         return new StoreResponseDto(entity);
+    }
+
+    @Transactional
+    public void updateLogo(Long id, StoreLogoUpdateRequestDto storeLogoUpdateRequestDto) throws IOException {
+        Store store = storeRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다.")
+        );
+        String storeFileName = store.getLogo().getStoreFileName();
+        if (storeFileName != null) {
+            fileStore.deleteFile(storeFileName);
+        }
+        UploadFile logo = fileStore.storeFile(storeLogoUpdateRequestDto.getAttachFile());
+        store.updateLogo(logo);
     }
 }

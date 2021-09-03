@@ -53,7 +53,7 @@ public class Store extends BaseTimeEntity {
         this.temholiday = temholiday;
     }
 
-    public void update(StoreInfoUpdateRequestDto storeInfoUpdateRequestDto) {
+    public void updateInfo(StoreInfoUpdateRequestDto storeInfoUpdateRequestDto) {
         this.storeName = storeInfoUpdateRequestDto.getStoreName();
         this.storePhone = storeInfoUpdateRequestDto.getStorePhone();
         this.bossName = storeInfoUpdateRequestDto.getBossName();
@@ -64,6 +64,10 @@ public class Store extends BaseTimeEntity {
         this.breaktime = storeInfoUpdateRequestDto.getBreaktime();
         this.holiday = storeInfoUpdateRequestDto.getHoliday();
         this.temholiday = storeInfoUpdateRequestDto.getTemholiday();
+    }
+
+    public void updateLogo(UploadFile logo) {
+        this.logo = logo;
     }
 
     //==연관관계 편의 메서드==//

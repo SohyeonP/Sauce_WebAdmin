@@ -21,6 +21,11 @@ public class FileStore {
         return fileDir + filename;
     }
 
+    public void deleteFile(String storeFileName) {
+        File file = new File(getFullPath(storeFileName));
+        if (file.exists()) file.delete();
+    }
+
     public List<UploadFile> storeFiles(List<MultipartFile> multipartFiles) throws IOException {
         List<UploadFile> storeFileResult = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {

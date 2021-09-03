@@ -1,6 +1,7 @@
 package co.kr.circus.sauceweb.web;
 
 import co.kr.circus.sauceweb.service.StoreService;
+import co.kr.circus.sauceweb.web.dto.StoreLogoUpdateRequestDto;
 import co.kr.circus.sauceweb.web.dto.StoreSaveRequestDto;
 import co.kr.circus.sauceweb.web.dto.StoreInfoUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -32,15 +33,19 @@ public class StoreController {
                               @ModelAttribute StoreSaveRequestDto storeSaveRequestDto,
                               RedirectAttributes redirectAttributes) throws IOException {
         log.info("POST /stores/new");
-        Long storeId = storeService.save(user.getUsername(), storeSaveRequestDto);
-        redirectAttributes.addAttribute("id", storeId);
-        return "redirect:/stores/{id}";
+        if (!storeSaveRequestDto.getAttachFile().isEmpty()) {
+            Long storeId = storeService.save(user.getUsername(), storeSaveRequestDto);
+            redirectAttributes.addAttribute("id", storeId);
+            return "redirect:/stores/{id}";
+        } else {
+            return "redirect:/stores/new";
+        }
     }
 
     @GetMapping("/stores/{id}")
     public String searchStore(@PathVariable Long id, Model model) {
         log.info("GET /stores/{id}");
-        model.addAttribute("storeRegisterDto", storeService.findById(id));
+        model.addAttribute("storeResponseDto", storeService.findById(id));
         return "storeInfoForm";
     }
 
@@ -49,8 +54,20 @@ public class StoreController {
                                   @ModelAttribute StoreInfoUpdateRequestDto storeInfoUpdateRequestDto,
                                   RedirectAttributes redirectAttributes) {
         log.info("POST /stores/{id}");
-        storeService.update(id, storeInfoUpdateRequestDto);
+        storeService.updateInfo(id, storeInfoUpdateRequestDto);
         redirectAttributes.addAttribute("id", id);
+        return "redirect:/stores/{id}";
+    }
+
+    @PostMapping("/stores/{id}/logo")
+    public String updateLogo(@PathVariable Long id,
+                             @ModelAttribute StoreLogoUpdateRequestDto storeLogoUpdateRequestDto,
+                             RedirectAttributes redirectAttributes) throws IOException {
+        log.info("POST /stores/{id}/logo");
+        if (!storeLogoUpdateRequestDto.getAttachFile().isEmpty()) {
+            storeService.updateLogo(id, storeLogoUpdateRequestDto);
+            redirectAttributes.addAttribute("id", id);
+        }
         return "redirect:/stores/{id}";
     }
 }
