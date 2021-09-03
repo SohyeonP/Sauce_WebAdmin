@@ -8,6 +8,7 @@ import co.kr.circus.sauceweb.domain.store.UploadFile;
 import co.kr.circus.sauceweb.utils.file.FileStore;
 import co.kr.circus.sauceweb.web.dto.BossResponseDto;
 import co.kr.circus.sauceweb.web.dto.StoreRegisterDto;
+import co.kr.circus.sauceweb.web.dto.StoreSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,12 +25,10 @@ public class StoreService {
     private final FileStore fileStore;
 
     @Transactional
-    public Long save(String username, StoreRegisterDto storeRegisterDto) throws IOException {
-        UploadFile logo = fileStore.storeFile(storeRegisterDto.getAttachFile());
+    public Long save(String username, StoreSaveRequestDto storeSaveRequestDto) throws IOException {
+        UploadFile logo = fileStore.storeFile(storeSaveRequestDto.getAttachFile());
         Boss boss = bossRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("해당 아이디가 존재하지 않습니다. " + username));
-        storeRegisterDto.addLogo(logo);
-        storeRegisterDto.addBoss(boss);
-        return storeRepository.save(storeRegisterDto.toEntity()).getId();
+        return storeRepository.save(storeSaveRequestDto.toEntity(logo, boss)).getId();
     }
 
     @Transactional
