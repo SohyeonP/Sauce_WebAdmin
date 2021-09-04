@@ -2,12 +2,16 @@ package co.kr.circus.sauceweb.domain.store;
 
 import co.kr.circus.sauceweb.domain.BaseTimeEntity;
 import co.kr.circus.sauceweb.domain.boss.Boss;
+import co.kr.circus.sauceweb.domain.story.Story;
 import co.kr.circus.sauceweb.web.dto.StoreInfoUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -22,6 +26,9 @@ public class Store extends BaseTimeEntity {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "boss_id")
     private Boss boss;
+
+    @OneToMany(mappedBy = "store")
+    private List<Story> stories = new ArrayList<>();
 
     @Embedded
     private UploadFile logo;
