@@ -19,7 +19,7 @@
 		<div class="signupFrm_div">
 			<h3>회원가입</h3>
 			<div class="signup_msg">회원가입을 위해 아래의 정보들을 입력해주세요<br> 이미 회원가입을 완료하셨다면 <span>로그인</span>을 해주세요</div>
-			<form class="signupfrm" th:action="@{/signup}" th:object="${bossSingupDto}" method="POST">
+			<form class="signupfrm" th:action="@{/signup}" method="POST">
 				<div>
 					<div class="t name"> 이름<span>*</span>
 					</div>
@@ -52,8 +52,8 @@
 				</div>
 				<div class="checkboxFrm">
 					<div class="chk" id="allchk"><input type="checkbox" /> &nbsp; 개인정보 이용약관 모두 동의</div>
-					<div class="chk"><input type="checkbox" name="check1" />[필수] <span> &nbsp;개인정보 수집 및 이용</span>에 동의합니다.</div>
-					<div class="chk"><input type="checkbox" name="check2" />[필수] <span> &nbsp; 서비스 이용약관</span>에 동의합니다.</div>
+					<div class="chk"><input type="checkbox" name="personalInfoTermYn" />[필수] <span> &nbsp;개인정보 수집 및 이용</span>에 동의합니다.</div>
+					<div class="chk"><input type="checkbox" name="sauceServiceTermYn" />[필수] <span> &nbsp; 서비스 이용약관</span>에 동의합니다.</div>
 				</div>
 
 				<button type="submit" class="signup_btn" id="submit" onclick="">회원가입</button>

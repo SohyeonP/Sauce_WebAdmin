@@ -5,7 +5,6 @@ import co.kr.circus.sauceweb.domain.store.Store;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +27,11 @@ public class Boss extends BaseTimeEntity {
     private String email;
     private String username;
     private String password;
-    private String check1;
-    private String check2;
+    private String personalInfoTermYn;
+    private String sauceServiceTermYn;
 
     @Builder
-    public Boss(List<Store> stores, String name, String phone, String birth, String email, String username, String password, String check1, String check2) {
+    public Boss(List<Store> stores, String name, String phone, String birth, String email, String username, String password, String personalInfoTermYn, String sauceServiceTermYn) {
         this.stores = stores;
         this.name = name;
         this.phone = phone;
@@ -40,7 +39,7 @@ public class Boss extends BaseTimeEntity {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.check1 = check1;
-        this.check2 = check2;
+        this.personalInfoTermYn = personalInfoTermYn;
+        this.sauceServiceTermYn = sauceServiceTermYn;
     }
 }

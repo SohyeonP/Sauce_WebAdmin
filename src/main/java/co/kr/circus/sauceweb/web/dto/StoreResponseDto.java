@@ -3,16 +3,11 @@ package co.kr.circus.sauceweb.web.dto;
 import co.kr.circus.sauceweb.domain.store.Store;
 import co.kr.circus.sauceweb.domain.store.UploadFile;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
 @Getter
-@Setter
-@NoArgsConstructor
-public class StoreRegisterDto {
+public class StoreResponseDto {
+
     private Long id;
-    private MultipartFile attchFile;
     private UploadFile logo;
     private String storeName;
     private String storePhone;
@@ -25,7 +20,7 @@ public class StoreRegisterDto {
     private String holiday;
     private String temholiday;
 
-    public StoreRegisterDto(Store entity) {
+    public StoreResponseDto(Store entity) {
         this.id = entity.getId();
         this.logo = entity.getLogo();
         this.storeName = entity.getStoreName();
