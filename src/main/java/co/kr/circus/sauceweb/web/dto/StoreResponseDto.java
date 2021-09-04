@@ -1,15 +1,14 @@
 package co.kr.circus.sauceweb.web.dto;
 
 import co.kr.circus.sauceweb.domain.store.Store;
+import co.kr.circus.sauceweb.domain.store.UploadFile;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
-@NoArgsConstructor
-public class StoreRegisterDto {
+public class StoreResponseDto {
+
     private Long id;
+    private UploadFile logo;
     private String storeName;
     private String storePhone;
     private String bossName;
@@ -21,8 +20,9 @@ public class StoreRegisterDto {
     private String holiday;
     private String temholiday;
 
-    public StoreRegisterDto(Store entity) {
+    public StoreResponseDto(Store entity) {
         this.id = entity.getId();
+        this.logo = entity.getLogo();
         this.storeName = entity.getStoreName();
         this.storePhone = entity.getStorePhone();
         this.bossName = entity.getBossName();

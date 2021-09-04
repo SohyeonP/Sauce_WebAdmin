@@ -2,10 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="container">
-    <form th:action th:object="${storeRegisterDto}" method="post">
+    <div th:if="${storeResponseDto.getLogo().getStoreFileName()} != null">
+        <img th:src="|/images/${storeResponseDto.getLogo().getStoreFileName()}|" width="300" height="300"/>
+    </div>
+    <form th:action="@{/stores/{id}/logo(id=${storeResponseDto.getId()})}" method="post" enctype="multipart/form-data">
+        <label for="logo">로고 변경</label>
+        <input type="file" id="logo" name="attachFile">
+        <input type="submit">
+    </form>
+    <hr>
+    <form th:action th:object="${storeResponseDto}" method="post" enctype="multipart/form-data">
         <h1>업체 정보 수정</h1>
         <div class="form-group">
-            <input type="hidden" th:field="*{id}" />
             <label for="biz_storename">가게 이름(상호명)</label><br>
             <input type="text" id="biz_storename" name="storeName" th:field="*{storeName}"><br>
             <label for="phone">가게 전화번호</label><br>
