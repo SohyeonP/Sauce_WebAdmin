@@ -3,7 +3,7 @@ package co.kr.circus.sauceweb.domain.store;
 import co.kr.circus.sauceweb.domain.BaseTimeEntity;
 import co.kr.circus.sauceweb.domain.boss.Boss;
 import co.kr.circus.sauceweb.domain.story.Story;
-import co.kr.circus.sauceweb.web.dto.StoreInfoUpdateRequestDto;
+import co.kr.circus.sauceweb.web.store.dto.StoreInfoUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

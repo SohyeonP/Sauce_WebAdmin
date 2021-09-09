@@ -1,9 +1,9 @@
-package co.kr.circus.sauceweb.web;
+package co.kr.circus.sauceweb.web.store;
 
 import co.kr.circus.sauceweb.service.StoreService;
-import co.kr.circus.sauceweb.web.dto.StoreLogoUpdateRequestDto;
-import co.kr.circus.sauceweb.web.dto.StoreSaveRequestDto;
-import co.kr.circus.sauceweb.web.dto.StoreInfoUpdateRequestDto;
+import co.kr.circus.sauceweb.web.store.dto.StoreLogoUpdateRequestDto;
+import co.kr.circus.sauceweb.web.store.dto.StoreSaveRequestDto;
+import co.kr.circus.sauceweb.web.store.dto.StoreInfoUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
