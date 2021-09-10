@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>SosangStorySignup</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+	<link rel="stylesheet" th:href="@{/css/login.css}">
+	<link rel="stylesheet" th:href="@{/css/signup.css}">
+</head>
+
+<body>
+<div class="content">
+	<div class="signup_img">
+		<div class="goback">&lt;-</div>
+		<div style="width:365px; height: 314px; margin: auto;"><img th:src="@{/img/man1.png}" alt=""/></div>
+	</div>
+	<div class="signup_div">
+		<div class="signupFrm_div">
+			<h3>회원가입</h3>
+			<div class="signup_msg">회원가입을 위해 아래의 정보들을 입력해주세요<br> 이미 회원가입을 완료하셨다면 <span>로그인</span>을 해주세요</div>
+			<form class="signupfrm" th:action="@{/signup}" method="POST">
+				<div>
+					<div class="t name"> 이름<span>*</span>
+					</div>
+					<input type="text" class="inpt name" id="name" name="name" placeholder="박소현" />
+				</div>
+				<div>
+					<div class="t birth"> 생년월일<span>*</span></div>
+					<input type="text" class="inpt birth" id="birth" name="birth" placeholder="19970301" />
+				</div>
+				<div>
+					<div class="t phone">핸드폰 번호<span>*</span></div>
+					<input type="text" class="inpt phone" name="phone" id="phone" placeholder="01012345678" />
+				</div>
+				<div>
+					<div class="t email">이메일<span>*</span></div>
+					<input type="text" class="inpt email" name="username" id="username" onkeyup="userCheck()" placeholder="example@circus.com" />
+					<div class="pwdmsg">※영문+숫자+특수기호 12자 이상</div>
+					<div class="check" id="user_check"></div>
+				</div>
+				<div>
+					<div class="t pwd1">비밀번호<span>*</span></div>
+					<input type="password" class="inpt pwd1" id="pwd1" onkeyup="pwCheck()" name="password" placeholder="비밀번호를 입력해주세요" />
+				</div>
+				<div>
+					<div class="t pwd2">비밀번호 재확인<span>*</span></div>
+					<input type="password" class="inpt pwd2" id="pwd2" onkeyup="pwCheck()" name="pwd2" placeholder="비밀번호를 다시 입력해주세요" />
+				</div>
+				<div>
+					<div id="pwCheckMessage"></div>
+				</div>
+				<div class="checkboxFrm">
+					<div class="chk" id="allchk"><input type="checkbox" /> &nbsp; 개인정보 이용약관 모두 동의</div>
+					<div class="chk"><input type="checkbox" name="personalInfoTermYn" />[필수] <span> &nbsp;개인정보 수집 및 이용</span>에 동의합니다.</div>
+					<div class="chk"><input type="checkbox" name="sauceServiceTermYn" />[필수] <span> &nbsp; 서비스 이용약관</span>에 동의합니다.</div>
+				</div>
+
+				<button type="submit" class="signup_btn" id="submit" onclick="">회원가입</button>
+			</form>
+
+		</div>
+	</div>
+	<div class="signup_footer">
+		<div>Copyright © 2020-2021 Circus Corp. All Right Reserved.</div>
+		<span>|</span>
+		<div>개인정보처리방침</div>
+		<span>|</span>
+		<div>서비스 이용약관</div>
+		<br>
+		<div style="margin-left: 70px;">서커스팩토리 사업자등록번호 : 356-88-00968</div>
+		<span>|</span>
+		<div>대표이사: 박소현</div>
+		<span>|</span>
+		<div>서울특별시 강남구 테헤란로98길(대치동) 11 EG빌딩</div>
+		<span>|</span>
+		<div>support@sauce.com</div>
+		<span>|</span>
+		<div>02-0000-0000</div>
+	</div>
+</div>
+
+<!--<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>-->
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script th:inline="javascript">
+
+	function pwCheck() {
+		var pwd1 = $("#pwd1").val();
+		var pwd2 = $("#pwd2").val();
+		if(pwd2 != ""){
+			if(pwd1 != pwd2) {
+				$("#pwCheckMessage").html("위에 입력한 비밀번호와 동일한 비밀번호를 다시 입력해주세요.").css("color", "red");
+			} else {
+				$("#pwCheckMessage").html("비밀번호가 일치합니다.").css("color", "blue");
+			}
+		}
+	}
+
+	// 아이디 유효성 검사
+	function userCheck() {
+		var username = $("#username").val();
+		console.log('username:: '+username);
+
+		$.ajax({
+			url: "/idCheck",
+			type: "GET",
+			data: {
+				username: username,
+			},
+			// dataType: "json",
+			// contentType: "application/json; charset=utf-8;",
+			success: function (data) {
+				console.log('data:: '+data);
+
+				if (data == "fail") {
+					console.log('fail:: '+data);
+					//아이디 중복 문구
+					$("#user_check").text("중복된 아이디가 있습니다. 다시 설정해 주세요.")
+					$("#user_check").css("color", "red");
+					$("#submit").attr("disabled", true);
+				} else {
+					// 아이디 사용 가능 문구
+					console.log('else:: '+data);
+					$("#user_check").text("사용 가능한 아이디입니다.")
+					$("#user_check").css("color", "blue");
+					$("#submit").attr("disabled", false);
+				}
+			}, error: function (data) {
+				console.log('error:: '+data);
+				console.log("실패");
+			}
+		});
+	}
+
+	// 모두 동의하면 나머지 다 체크됨
+	$(function (){
+		$('#allchk').click(function() {
+			var checked = $('#allchk').is(':checked');
+
+			if (checked) {
+				$('input:checkbox').prop('checked', true);
+			}
+		});
+	});
+
+</script>
+</body>
+
+</html>
