@@ -12,4 +12,5 @@ public class StoryImageUpdateRequestDto {
     public StoryImageUpdateRequestDto(MultipartFile attachFile) {
         this.attachFile = attachFile;
     }
+
 }

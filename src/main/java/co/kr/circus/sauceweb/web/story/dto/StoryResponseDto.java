@@ -1,5 +1,6 @@
 package co.kr.circus.sauceweb.web.story.dto;
 
+
 import co.kr.circus.sauceweb.domain.store.UploadFile;
 import co.kr.circus.sauceweb.domain.story.Story;
 import lombok.Getter;
@@ -18,4 +19,5 @@ public class StoryResponseDto {
         this.title = entity.getTitle();
         this.content = entity.getContent();
     }
+
 }
