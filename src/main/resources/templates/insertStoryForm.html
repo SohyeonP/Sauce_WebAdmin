@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <form th:action method="post" enctype="multipart/form-data">
+        <h1>스토리 추가</h1>
+        <div>
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title"><br>
+        </div>
+        <div>
+            <label for="content">내용</label>
+            <textarea id="content" name="content"></textarea><br>
+        </div>
+        <div>
+            <input type="file" name="attachFile">
+        </div>
+        <input type="submit" th:value="추가">
+        <input type="reset" th:value="취소">
+    </form>
+</div> <!-- /container -->
+</body>
+</html>
