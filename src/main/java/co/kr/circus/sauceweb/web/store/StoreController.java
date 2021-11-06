@@ -1,9 +1,11 @@
-package co.kr.circus.sauceweb.web;
+package co.kr.circus.sauceweb.web.store;
 
 import co.kr.circus.sauceweb.service.StoreService;
-import co.kr.circus.sauceweb.web.dto.StoreLogoUpdateRequestDto;
-import co.kr.circus.sauceweb.web.dto.StoreSaveRequestDto;
-import co.kr.circus.sauceweb.web.dto.StoreInfoUpdateRequestDto;
+import co.kr.circus.sauceweb.service.StoryService;
+import co.kr.circus.sauceweb.web.store.dto.StoreLogoUpdateRequestDto;
+import co.kr.circus.sauceweb.web.store.dto.StoreSaveRequestDto;
+import co.kr.circus.sauceweb.web.store.dto.StoreInfoUpdateRequestDto;
+import co.kr.circus.sauceweb.web.story.dto.StoryResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,6 +23,7 @@ import java.io.IOException;
 public class StoreController {
 
     private final StoreService storeService;
+    private final StoryService storyService;
 
     @GetMapping("/stores/new")
     public String createStoreForm() {
@@ -46,6 +49,7 @@ public class StoreController {
     public String searchStore(@PathVariable Long id, Model model) {
         log.info("GET /stores/{id}");
         model.addAttribute("storeResponseDto", storeService.findById(id));
+
         return "storeInfoForm";
     }
 

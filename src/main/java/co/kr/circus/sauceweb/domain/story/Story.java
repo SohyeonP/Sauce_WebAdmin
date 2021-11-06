@@ -18,7 +18,8 @@ public class Story {
     private Long id;
 
     @Embedded
-    private UploadFile logo;
+    private UploadFile image;
+    private String title;
     private String content;
 
     @ManyToOne(fetch = LAZY)
@@ -26,10 +27,15 @@ public class Story {
     private Store store;
 
     @Builder
-    public Story(UploadFile logo, String content, Store store) {
-        this.logo = logo;
+    public Story(UploadFile image, String title, String content, Store store) {
+        this.image = image;
+        this.title = title;
         this.content = content;
         this.store = store;
+    }
+
+    public void updateImage(UploadFile image) {
+        this.image = image;
     }
 
     //==연관관계 편의 메서드==//

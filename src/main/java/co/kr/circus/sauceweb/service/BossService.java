@@ -2,8 +2,8 @@ package co.kr.circus.sauceweb.service;
 
 import co.kr.circus.sauceweb.domain.boss.Boss;
 import co.kr.circus.sauceweb.domain.boss.BossRepository;
-import co.kr.circus.sauceweb.web.dto.BossResponseDto;
-import co.kr.circus.sauceweb.web.dto.BossSaveRequestDto;
+import co.kr.circus.sauceweb.web.boss.dto.BossResponseDto;
+import co.kr.circus.sauceweb.web.boss.dto.BossSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
