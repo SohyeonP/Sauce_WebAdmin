@@ -10,7 +10,16 @@
         <input type="file" id="logo" name="attachFile">
         <input type="submit">
     </form>
+
     <hr>
+
+    스토리 <a th:href="@{/stores/{id}/stories/insert(id=${storeResponseDto.id})}">추가</a>
+    <br>
+<!--    <div th:unless="${storyResponseDto.getImage().getStoreFileName()}!=null">-->
+<!--        <img th:src="|/images/${storyResponseDto.getImage().getStoreFileName()}|" width="300" height="300"/>-->
+<!--    </div>-->
+    <hr>
+
     <form th:action th:object="${storeResponseDto}" method="post" enctype="multipart/form-data">
         <h1>업체 정보 수정</h1>
         <div class="form-group">

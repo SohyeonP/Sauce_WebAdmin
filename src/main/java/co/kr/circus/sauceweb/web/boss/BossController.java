@@ -1,7 +1,7 @@
-package co.kr.circus.sauceweb.web;
+package co.kr.circus.sauceweb.web.boss;
 
+import co.kr.circus.sauceweb.web.boss.dto.BossSaveRequestDto;
 import co.kr.circus.sauceweb.service.BossService;
-import co.kr.circus.sauceweb.web.dto.BossSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
