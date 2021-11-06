@@ -1,8 +1,8 @@
 package co.kr.circus.sauceweb.service;
 
+import co.kr.circus.sauceweb.web.story.dto.StoryImageUpdateRequestDto;
 import co.kr.circus.sauceweb.web.story.dto.StoryResponseDto;
 import co.kr.circus.sauceweb.web.story.dto.StorySaveRequestDto;
-import co.kr.circus.sauceweb.web.story.dto.StoryImageUpdateRequestDto;
 import co.kr.circus.sauceweb.domain.store.Store;
 import co.kr.circus.sauceweb.domain.store.StoreRepository;
 import co.kr.circus.sauceweb.domain.store.UploadFile;
