@@ -1,4 +1,4 @@
-package co.kr.circus.sauceweb.web.dto;
+package co.kr.circus.sauceweb.web.store.dto;
 
 import co.kr.circus.sauceweb.domain.boss.Boss;
 import co.kr.circus.sauceweb.domain.store.Store;
