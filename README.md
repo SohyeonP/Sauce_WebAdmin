@@ -9,6 +9,9 @@
 
 ### [Sauce_Web](https://github.com/SohyeonP/Sauce_WebAdmin)/[Sauce_App](https://github.com/Son6840/Sauce_App) 
 
+## Sauce_web
+
+업주들이 가입을 하고 로그인을 하여 사용자들에게 보여지는 정보를 입력하는 관리자 웹 페이지
 
 **디자인,기획**: [SohyeonP](https://github.com/SohyeonP)   
 **Frontend(Web)**: [SohyeonP](https://github.com/SohyeonP)    
