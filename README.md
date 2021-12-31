@@ -22,7 +22,6 @@
 * [Son](https://github.com/Son6840)- 상점 리스트 뷰 구현 구글 맵 연동및 사용자 위치 기능, 스플래쉬 화면 구현 RetroFit사용하여 상점 조회 및 사용자 리뷰 기능
 * [Hun](https://github.com/DonghunJeong95)- 카카오 로그인 API, 관리자 로그인, RetroFit을 사용하여 사용자 정보 수정 
 
-## Design
 
 
 
